@@ -3,6 +3,7 @@ import Container from "../../../components/Container/Container";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import avatarImg from "../../../assets/avatar/placeholder.jpg"
+import logo from "../../../assets/logo/logo.png"
 
 
 const Navbar = () => {
@@ -31,7 +32,10 @@ const Navbar = () => {
         <li><a>Item 3</a></li>
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+    <Link to="/">
+    <div className="flex items-center cursor-pointer"> <img width="50" height="50" src={logo} alt="" />
+    <p className="font-medium">SportsDreamers</p>
+     </div></Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">

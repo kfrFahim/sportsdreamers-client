@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -25,9 +25,15 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         console.log(result.user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate(from, { replace: true });
-        toast.success("Login Succressfully");
-        reset();
+        reset()
       })
       .catch((err) => {
         console.log(err.message);
@@ -68,8 +74,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center ">
-
-<Helmet>
+      <Helmet>
         <title>SportsDremars || Login</title>
       </Helmet>
 

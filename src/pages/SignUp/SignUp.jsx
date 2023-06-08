@@ -5,11 +5,11 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
 
-  const {createUser ,loading} = useContext(AuthContext);
+  const {createUser , signInWithGoogle,setLoading, loading} = useContext(AuthContext);
  
 
   const navigate = useNavigate();
@@ -31,27 +31,42 @@ const SignUp = () => {
     createUser(data.email, data.password)
    .then(result => {
     console.log(result.user);
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Sign Up Successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate(from, { replace: true });
-    toast.success("SignUp Succressfully");
    }
     )
+    setLoading(false);
     reset()
   };
 
 
-    //  Gooogle Login
-    const handleGoogleSignIn = () => {
-      signInWithGoogle()
-        .then((result) => {
-          console.log(result.user);
-          navigate(from, { replace: true });
-        })
-        .catch((err) => {
-          console.log(err.message);
-          toast.error(err.message);
-          setLoading(false);
+  //  Gooogle Login
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign Up Successfully",
+          showConfirmButton: false,
+          timer: 1500,
         });
-    };
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        console.log(err.message);
+        toast.error(err.message);
+        setLoading(false);
+      });
+  };
+
 
   const password = watch("password", "");
 
@@ -163,7 +178,7 @@ const SignUp = () => {
             </div>
 
             <div
-                  onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignIn}
               className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
             >
               <FcGoogle size={32} />
