@@ -1,56 +1,95 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { TbFidgetSpinner } from 'react-icons/tb';
-import { AuthContext } from '../../providers/AuthProvider';
+import { TbFidgetSpinner } from "react-icons/tb";
+import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const password = watch("password", "");
 
-     const {loading} = useContext(AuthContext)
+  const { loading } = useContext(AuthContext);
 
-     return (
-          <div>
-               <div className="hero min-h-screen bg-base-200">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <div className="text-center lg:text-left w-1/2">
-      <img src="https://apps.sportsmarkit.com/images/sportsmarkit-login-pic.svg" alt="" />
-    </div>
-    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <form  onSubmit={handleSubmit(onSubmit)} className="card-body">
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Name</span>
-          </label>
-          <input type="text" {...register("name",{ required: true })} name='name' placeholder="Name" className="input input-bordered" />
-          {errors.name && <span className='text-red-500'>This field is required</span>}
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input type="email" {...register("email",{ required: true })} name='email' placeholder="email" className="input input-bordered" />
-          {errors.email && <span className='text-red-500'>This field is required</span>}
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input type="password" {...register("password",{ required: true })} placeholder="password" className="input input-bordered" />
-          {errors.password && <span className='text-red-500'>This field is required</span>}
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Confirm Password</span>
-          </label>
-          <input type="password" {...register("confirm-password",{ required: true })} placeholder="confirm password" className="input input-bordered" />
-          {errors.confirm-password && <span className='text-red-500'>This field is required</span>}
-        </div>
-        <div className="form-control mt-6">
-        <button
+  return (
+    <div>
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="text-center lg:text-left w-1/2">
+            <img
+              src="https://apps.sportsmarkit.com/images/sportsmarkit-login-pic.svg"
+              alt=""
+            />
+          </div>
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("name", { required: true })}
+                  name="name"
+                  placeholder="Name"
+                  className="input input-bordered"
+                />
+                {errors.name && (
+                  <span className="text-red-500">This field is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  {...register("email", { required: true })}
+                  name="email"
+                  placeholder="email"
+                  className="input input-bordered"
+                />
+                {errors.email && (
+                  <span className="text-red-500">This field is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label>Password</label>
+                <input
+                  className="input input-bordered"
+                  type="password"
+                  {...register("password",{required: "This field is required", minLength: {value: 6,message: "Password must have at least 6 characters"
+                      },
+                    }
+                  )}
+                />
+                {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+              </div>
+
+              <div className="form-control">
+                <label>Confirm Password</label>
+                <input
+                  className="input input-bordered"
+                  type="password"
+                  {...register("confirmPassword", {
+                    required: "This field is required",
+                    validate: (value) =>
+                      value === password || "The passwords do not match",
+                  })}
+                />
+                {errors.confirmPassword && (
+                  <p className="text-red-500">{errors.confirmPassword.message}</p>
+                )}
+              </div>
+              <div className="form-control mt-6">
+                <button
                   type="submit"
                   className="bg-rose-500 w-full rounded-md py-3 text-white"
                 >
@@ -63,10 +102,10 @@ const SignUp = () => {
                     "Continue"
                   )}
                 </button>
-        </div>
-      </form>
+              </div>
+            </form>
 
-      <div className="flex items-center pt-4 space-x-1">
+            <div className="flex items-center pt-4 space-x-1">
               <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
               <p className="px-3 text-sm dark:text-gray-400">
                 Login with social accounts
@@ -74,8 +113,8 @@ const SignUp = () => {
               <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
             </div>
 
-      <div
-          //     onClick={handleGoogleSignIn}
+            <div
+              //     onClick={handleGoogleSignIn}
               className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
             >
               <FcGoogle size={32} />
@@ -92,11 +131,11 @@ const SignUp = () => {
               </Link>
               .
             </p>
-    </div>
-  </div>
-</div>
           </div>
-     );
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SignUp;
