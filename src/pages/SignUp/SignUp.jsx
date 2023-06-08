@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
 
-  const {createUser , signInWithGoogle,setLoading, loading} = useContext(AuthContext);
+  const {createUser , signInWithGoogle,setLoading,updateUserProfile, loading} = useContext(AuthContext);
  
 
   const navigate = useNavigate();
@@ -31,13 +31,16 @@ const SignUp = () => {
     createUser(data.email, data.password)
    .then(result => {
     console.log(result.user);
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Sign Up Successfully",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    updateUserProfile(data.name , data.photoURL)
+    .then(()=>{
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Sign Up Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    })
     navigate(from, { replace: true });
    }
     )
@@ -89,7 +92,7 @@ const SignUp = () => {
               alt=""
             />
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-gray-100 text-gray-900">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -100,10 +103,10 @@ const SignUp = () => {
                   {...register("name", { required: true })}
                   name="name"
                   placeholder="Name"
-                  className="input input-bordered"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
                 {errors.name && (
-                  <span className="text-red-500">This field is required</span>
+                  <span className="text-red-500">Name is required</span>
                 )}
               </div>
               <div className="form-control">
@@ -115,19 +118,34 @@ const SignUp = () => {
                   {...register("email", { required: true })}
                   name="email"
                   placeholder="email"
-                  className="input input-bordered"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
                 {errors.email && (
-                  <span className="text-red-500">This field is required</span>
+                  <span className="text-red-500">Email is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">PhotoURL</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("PhotoURL", { required: true })}
+                  
+                  placeholder="PhotoURL"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                />
+                {errors.email && (
+                  <span className="text-red-500">PhotoURL is required</span>
                 )}
               </div>
               <div className="form-control">
                 <label>Password</label>
                 <input
-                  className="input input-bordered"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                   type="password"
                   placeholder="password"
-                  {...register("password",{required: "This field is required", minLength: {value: 6,message: "Password must have at least 6 characters"
+                  {...register("password",{required: "Password is required", minLength: {value: 6,message: "Password must have at least 6 characters"
                       }, pattern:/(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                     }
                   )}
@@ -139,11 +157,11 @@ const SignUp = () => {
               <div className="form-control">
                 <label>Confirm Password</label>
                 <input
-                  className="input input-bordered"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                   type="password"
                   placeholder="confirm password"
                   {...register("confirmPassword", {
-                    required: "This field is required",
+                    required: "Confirm Password is required",
                     validate: (value) =>
                       value === password || "The passwords do not match",
                   })}
@@ -186,7 +204,7 @@ const SignUp = () => {
               <p>Continue with Google</p>
             </div>
             <p className="px-6 text-sm text-center text-gray-400">
-              Don't have an account yet?{" "}
+              Already have an account?{" "}
               <Link
                 to="/login"
                 className="hover:underline hover:text-rose-500 text-gray-600"

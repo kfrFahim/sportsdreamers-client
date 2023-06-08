@@ -37,7 +37,6 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err.message);
-        toast.error(err.message);
         setLoading(false);
       });
   };
@@ -51,7 +50,6 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err.message);
-        toast.error(err.message);
         setLoading(false);
       });
   };
@@ -111,7 +109,7 @@ const Login = () => {
                     name="email"
                     id="email"
                     required
-                    placeholder="Enter Your Email Here"
+                    placeholder="Email"
                     className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                     data-temp-mail-org="0"
                   />
@@ -127,7 +125,7 @@ const Login = () => {
                     name="password"
                     id="password"
                     required
-                    placeholder="*******"
+                    placeholder="Password"
                     className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                   />
                 </div>
