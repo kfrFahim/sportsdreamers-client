@@ -1,0 +1,8 @@
+.featured-bg{
+     background-image: url("./../../../assets/banner/baground.jpg");
+     background-size: cover;
+}
+
+.text{
+     color: aliceblue;
+}
