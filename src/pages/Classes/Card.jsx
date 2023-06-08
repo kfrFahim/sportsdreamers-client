@@ -11,8 +11,8 @@ const Card = ({item}) => {
 
   const {user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation()
-  const [refetch] = useCart()
+  const location = useLocation();
+  const [refetch] = useCart();
 
   const handleAddToCart = (item) => {
     console.log(item);
@@ -28,7 +28,7 @@ const Card = ({item}) => {
         .then(res => res.json())
         .then(data => {
           if(data.insertedId){
-            refetch()
+            
             Swal.fire({
               position: 'top-end',
               icon: 'success',
@@ -36,6 +36,7 @@ const Card = ({item}) => {
               showConfirmButton: false,
               timer: 1500
             })
+            refetch();
           }
         })
       }
