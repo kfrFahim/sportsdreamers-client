@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "../../../components/Container/Container";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import avatarImg from "../../../assets/avatar/placeholder.jpg"
 
 
 const Navbar = () => {
+
+  const {user , logOut} = useContext(AuthContext)
+
+  const handleLogOut = () => {
+    logOut();
+  }
+
+
   return (
 <div className="mb-[100px] md:mb-0">
   <Container>
@@ -31,7 +41,21 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <button><Link to="/login"> Login </Link></button>
+    
+    {
+        user ? <> <div className="flex gap-1">
+          <button className="btn" onClick={handleLogOut}> Logout </button>
+          <img
+      className='rounded-full'
+      src={user && user.photoURL ? user.photoURL : avatarImg}
+      alt='profile'
+      height='30'
+      width='30'
+    />
+
+          
+          </div></> : <><button className="btn"><Link to="/login"> Login </Link></button></>
+    }
   </div>
 </div>
   </Container>

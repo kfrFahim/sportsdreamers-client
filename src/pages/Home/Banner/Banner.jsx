@@ -9,7 +9,11 @@ import img4 from "../../../assets/banner/img4.jpg";
 
 const Banner = () => {
   return (
-    <Carousel>
+<div>
+
+
+
+<Carousel>
       <div>
         <img src={img1} />
       </div>
@@ -23,6 +27,7 @@ const Banner = () => {
         <img src={img4} />
       </div>
     </Carousel>
+</div>
   );
 };
 

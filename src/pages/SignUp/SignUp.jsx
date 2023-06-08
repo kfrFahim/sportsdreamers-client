@@ -1,25 +1,71 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+
+  const {createUser ,loading} = useContext(AuthContext);
+ 
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+
+
+
   const {
     register,
     handleSubmit,
     watch,
+    reset ,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data)
+    createUser(data.email, data.password)
+   .then(result => {
+    console.log(result.user);
+    navigate(from, { replace: true });
+    toast.success("SignUp Succressfully");
+   }
+    )
+    reset()
+  };
+
+
+    //  Gooogle Login
+    const handleGoogleSignIn = () => {
+      signInWithGoogle()
+        .then((result) => {
+          console.log(result.user);
+          navigate(from, { replace: true });
+        })
+        .catch((err) => {
+          console.log(err.message);
+          toast.error(err.message);
+          setLoading(false);
+        });
+    };
 
   const password = watch("password", "");
 
-  const { loading } = useContext(AuthContext);
+
+
+
 
   return (
     <div>
+
+<Helmet>
+        <title>SportsDremars || SignUp</title>
+      </Helmet>
+
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left w-1/2">
@@ -65,12 +111,14 @@ const SignUp = () => {
                 <input
                   className="input input-bordered"
                   type="password"
+                  placeholder="password"
                   {...register("password",{required: "This field is required", minLength: {value: 6,message: "Password must have at least 6 characters"
-                      },
+                      }, pattern:/(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                     }
                   )}
                 />
                 {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+                {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
               </div>
 
               <div className="form-control">
@@ -78,6 +126,7 @@ const SignUp = () => {
                 <input
                   className="input input-bordered"
                   type="password"
+                  placeholder="confirm password"
                   {...register("confirmPassword", {
                     required: "This field is required",
                     validate: (value) =>
@@ -114,7 +163,7 @@ const SignUp = () => {
             </div>
 
             <div
-              //     onClick={handleGoogleSignIn}
+                  onClick={handleGoogleSignIn}
               className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
             >
               <FcGoogle size={32} />

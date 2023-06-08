@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { loading, setLoading, signIn, signInWithGoogle, resetPassword } =
@@ -67,6 +68,11 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center ">
+
+<Helmet>
+        <title>SportsDremars || Login</title>
+      </Helmet>
+
       <div className="w-1/2">
         <img
           src="https://apps.sportsmarkit.com/images/sportsmarkit-login-pic.svg"
