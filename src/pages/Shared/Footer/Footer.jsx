@@ -1,10 +1,11 @@
 import React from "react";
 import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
-import logo from "../../../assets/logo.png";
+import logo from "../../../assets/logo/logo.png";
+import Container from "../../../components/Container/Container";
 
 const Footer = () => {
   return (
-    <>
+    <Container>
       <div className="my-5">
         <div className="grid grid-cols md:grid-cols-4 p-5 text-black">
           <div className="flex gap-3 items-center">
@@ -57,7 +58,7 @@ const Footer = () => {
         <hr />
         <p className="text-center py-4"> SportsDreamers Academy © 2023 </p>
       </div>
-    </>
+    </Container>
   );
 };
 
