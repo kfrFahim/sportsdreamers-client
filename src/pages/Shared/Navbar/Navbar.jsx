@@ -1,4 +1,12 @@
-<div className="navbar bg-base-100">
+import React from "react";
+import Container from "../../../components/Container/Container";
+import { Link } from "react-router-dom";
+
+const Navbar = () => {
+  return (
+<div className="mb-[100px] md:mb-0">
+  <Container>
+  <div className="navbar bg-base-100">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -8,10 +16,6 @@
         <li><a>Item 1</a></li>
         <li>
           <a>Parent</a>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
         </li>
         <li><a>Item 3</a></li>
       </ul>
@@ -20,16 +24,8 @@
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li tabIndex={0}>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
+      <li><Link to="/">Home</Link></li>
+      <li tabIndex={0}> <Link to="/classes">Classes</Link> </li>
       <li><a>Item 3</a></li>
     </ul>
   </div>
@@ -37,3 +33,9 @@
     <a className="btn">Button</a>
   </div>
 </div>
+  </Container>
+</div>
+  );
+};
+
+export default Navbar;
