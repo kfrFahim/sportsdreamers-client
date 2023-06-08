@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../../../components/Container/Container";
 import { Link } from "react-router-dom";
 
+
 const Navbar = () => {
   return (
 <div className="mb-[100px] md:mb-0">
@@ -30,7 +31,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+    <button><Link to="/login"> Login </Link></button>
   </div>
 </div>
   </Container>
