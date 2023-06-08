@@ -33,7 +33,6 @@ const Login = () => {
           timer: 1500,
         });
         navigate(from, { replace: true });
-        reset()
       })
       .catch((err) => {
         console.log(err.message);
