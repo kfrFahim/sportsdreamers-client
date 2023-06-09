@@ -71,7 +71,7 @@ const MyClasses = () => {
         </thead>
         <tbody>
           {
-            cart.map((items , index) => <tr>
+            cart.map((items , index) => <tr key={items._id}>
               <th> {index + 1} </th>
               <td>
               <div className="flex items-center space-x-3">
@@ -89,9 +89,9 @@ const MyClasses = () => {
               </td>
               <td>$ {items.price}</td>
 
-              <th>
+              <td>
                 <button onClick={() => handleDelete(items)} className="btn btn-ghost bg-red-500 text-white"><FaTrashAlt></FaTrashAlt></button>
-              </th>
+              </td>
             </tr> )
           }
     

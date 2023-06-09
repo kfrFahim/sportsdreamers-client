@@ -8,79 +8,86 @@ import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-
-  const {createUser , signInWithGoogle,setLoading,updateUserProfile, loading} = useContext(AuthContext);
- 
+  const {
+    createUser,
+    signInWithGoogle,
+    setLoading,
+    updateUserProfile,
+    loading,
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-
-
-
   const {
     register,
     handleSubmit,
     watch,
-    reset ,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
-    createUser(data.email, data.password)
-   .then(result => {
-    console.log(result.user);
-    updateUserProfile(data.name , data.photoURL)
-    .then(()=>{
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Sign Up Successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    })
-    navigate(from, { replace: true });
-   }
-    )
-    setLoading(false);
-    reset()
-  };
+    console.log(data);
+    createUser(data.email, data.password).then((result) => {
+      console.log(result.user);
 
+      updateUserProfile(data.name, data.photoURL).then(() => {
+        const saveUser = {name: data.name , email: data.email }
+        fetch("http://localhost:5000/users",{
+          method:"POST",
+          headers:{
+            'content-type': "application/json"
+          },
+          body:JSON.stringify(saveUser)
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Sign Up Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate(from, { replace: true });
+            }
+          });
+      });
+    });
+    setLoading(false);
+  };
 
   //  Gooogle Login
+
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then((result) => {
-        console.log(result.user);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Sign Up Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {
-        console.log(err.message);
-        toast.error(err.message);
-        setLoading(false);
-      });
-  };
+        .then(result => {
+            const loggedInUser = result.user;
+            console.log(loggedInUser);
+            const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+            fetch('http://localhost:5000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(saveUser)
+            })
+                .then(res => res.json())
+                .then(() => {
+                    navigate(from, { replace: true });
+                })
+        })
+};
 
 
   const password = watch("password", "");
 
-
-
-
-
   return (
     <div>
-
-<Helmet>
+      <Helmet>
         <title>SportsDremars || SignUp</title>
       </Helmet>
 
@@ -131,7 +138,6 @@ const SignUp = () => {
                 <input
                   type="text"
                   {...register("PhotoURL", { required: true })}
-                  
                   placeholder="PhotoURL"
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
@@ -145,13 +151,24 @@ const SignUp = () => {
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                   type="password"
                   placeholder="password"
-                  {...register("password",{required: "Password is required", minLength: {value: 6,message: "Password must have at least 6 characters"
-                      }, pattern:/(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                    }
-                  )}
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must have at least 6 characters",
+                    },
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                  })}
                 />
-                {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-                {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
+                {errors.password && (
+                  <p className="text-red-500">{errors.password.message}</p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-600">
+                    Password must have one Uppercase one lower case, one number
+                    and one special character.
+                  </p>
+                )}
               </div>
 
               <div className="form-control">
@@ -167,7 +184,9 @@ const SignUp = () => {
                   })}
                 />
                 {errors.confirmPassword && (
-                  <p className="text-red-500">{errors.confirmPassword.message}</p>
+                  <p className="text-red-500">
+                    {errors.confirmPassword.message}
+                  </p>
                 )}
               </div>
               <div className="form-control mt-6">
