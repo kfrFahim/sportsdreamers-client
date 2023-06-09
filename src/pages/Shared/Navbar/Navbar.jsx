@@ -43,7 +43,7 @@ const Navbar = () => {
       <li tabIndex={0}> <Link to="/classes">Classes</Link> </li>
       <li>
         {
-          user ? <Link to="/dashboard/myclasses"> Dashboard </Link> : ""
+          user ? <Link to="/dashboard"> Dashboard </Link> : ""
         }
       </li>
     </ul>

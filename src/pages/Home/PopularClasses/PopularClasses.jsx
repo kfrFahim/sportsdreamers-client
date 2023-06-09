@@ -25,7 +25,7 @@ const PopularClasses = () => {
       >
 
         {
-            classes.slice(0,6).map(item =>        <SwiperSlide>
+            classes.slice(0,6).map(item => <SwiperSlide key={item._id}>
               <img
                 className="md:h-[350px]"
                 src={item.image}
