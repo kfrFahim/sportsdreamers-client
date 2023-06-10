@@ -13,12 +13,14 @@ const Footer = () => {
             <p className="text-xl font-bold">SportsDreamers</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold my-5">BRANDS</h3>
+            <h3 className="text-xl font-semibold my-5">Sports</h3>
             <ul>
-              <li>Avengers</li>
-              <li className="py-2">Transformers</li>
-              <li>Marvel</li>
-              <li className="py-2">Star Wars</li>
+              <li>Football Training</li>
+              <li className="py-2">Cricket Training</li>
+              <li>Basketball Skills Development</li>
+              <li className="py-2">Tennis Lessons</li>
+              <li>Swimming Lessons</li>
+              <li className="py-2">Gymnastics Training</li>
             </ul>
           </div>
           <div>
@@ -32,12 +34,12 @@ const Footer = () => {
           </div>
           <div>
             <h3 className="text-xl font-semibold my-4">CONTACT</h3>
-            <p>101 Independence Avenue. S.E </p>
+           
             <p className="my-2 font-medium">
               <a href="#">Phone : +67 14874575</a>
             </p>
             <p className="font-medium">
-              Email : <a href="#">battleheroes@gmail.com</a>
+              Email : <a href="#">sportsdreamers@gmail.com</a>
             </p>
             <div>
               <ul className="flex gap-8 my-4">

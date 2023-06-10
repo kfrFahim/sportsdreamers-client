@@ -39,7 +39,7 @@ const Dashboard = () => {
           <div>
           {
               isAdmin ? (<div>   <li><NavLink to="/dashboard/adminhome"><FaHome></FaHome> Admin Home</NavLink></li>
-              <li><NavLink to="/dashboard/addItem"> <FaUtensils></FaUtensils> Manage Classes</NavLink></li>
+              <li><NavLink to="/dashboard/manageclass"> <FaUtensils></FaUtensils> Manage Classes</NavLink></li>
               <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> Manage Users</NavLink></li></div>) 
               :
                isInstructor ?

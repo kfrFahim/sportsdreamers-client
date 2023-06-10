@@ -5,7 +5,7 @@ const InstructorCard = ({ item }) => {
   return (
     <Container>
       <div className="my-6">
-        <div className="card w-full md:h-[450px] bg-base-100 shadow-xl">
+        <div className="card w-full md:h-[350px] bg-base-100 shadow-xl">
           <figure>
             <img className=" md:h-[200px]" src={item.image_url} alt="Shoes" />
           </figure>

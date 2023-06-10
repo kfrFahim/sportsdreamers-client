@@ -8,12 +8,15 @@ import Swal from "sweetalert2";
 const AllUsers = () => {
 //     const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
+
         const res = await fetch("http://localhost:5000/users")
         return res.json()
         
      //    axiosSecure.get('/users')
      //    return res.data;
     })
+
+    console.log(users);
 
     const handleMakeAdmin = user =>{
         fetch(`http://localhost:5000/users/admin/${user._id}`, {

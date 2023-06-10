@@ -13,13 +13,13 @@ const Featured = () => {
           <img src={featured} alt="" />
         </div>
         <div className="md:ml-10 text-white leading-loose">
-          <p>March 20, 2023</p>
-          <h3>WHERE CAN I GET SOME?</h3>
+
+          
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            voluptate facere, deserunt dolores maiores quod nobis quas quasi.
-            Eaque repellat recusandae ad laudantium tempore consequatur
-            consequuntur omnis ullam maxime tenetur.
+          Sports camps are organized programs that provide specialized training and coaching in various sports disciplines. They are typically designed for athletes of different ages and skill levels who want to improve their skills, learn new techniques, and enhance their overall performance in a particular sport.
+          </p>
+          <p>
+          Sports camps offer a structured environment where participants can receive focused training from experienced coaches and instructors. These camps often take place during school breaks or summer vacations and can range from a few days to several weeks in duration.
           </p>
           <button className="btn btn-outline border-0 border-b-4 mt-5 text-white">
             Read More

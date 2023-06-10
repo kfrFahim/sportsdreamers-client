@@ -32,7 +32,7 @@ const AddClass = () => {
               if(imgResponse.success){
                   const imgURL = imgResponse.data.display_url;
                   const {name, price, available_seats, instructor_name,instructor_email} = data;
-                  const newItem = {name, price: parseFloat(price), available_seats, instructor_name,instructor_email, image:imgURL , }
+                  const newItem = {name, price: parseFloat(price), available_seats, instructor_name,instructor_email, image:imgURL , status:"panding" }
                   console.log(newItem)
                   axiosSecure.post('/newclasses', newItem)
                   .then(data => {
