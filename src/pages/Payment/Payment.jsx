@@ -8,7 +8,8 @@ import useCart from '../../hooks/useCart';
 const Payment = () => {
 
      const [cart] = useCart();
-     
+     const total = cart.reduce((sum, item) => sum + item.price, 0);
+     const price = parseFloat(total.toFixed(2))
     
 
 
@@ -22,7 +23,7 @@ const Payment = () => {
                <SectionTitle heading='Payment'></SectionTitle>
 
                <Elements stripe={stripePromise}>
-                <CheckoutForm  ></CheckoutForm>
+                <CheckoutForm price={price} ></CheckoutForm>
             </Elements>
           </div>
      );

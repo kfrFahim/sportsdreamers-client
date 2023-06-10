@@ -17,10 +17,8 @@ const Card = ({item}) => {
   const {user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [refetch] = useCart();
 
   const handleAddToCart = (item) => {
-    console.log(item);
       if(user && user.email){
         const orderClass = {classId : _id , name ,image,  instructor ,available_seats,price , email: user.email }
         fetch("http://localhost:5000/carts", {
@@ -33,7 +31,6 @@ const Card = ({item}) => {
         .then(res => res.json())
         .then(data => {
           if(data.insertedId){
-            
             Swal.fire({
               position: 'top-end',
               icon: 'success',
@@ -41,7 +38,7 @@ const Card = ({item}) => {
               showConfirmButton: false,
               timer: 1500
             })
-            refetch();
+            // refetch();
           }
         })
       }
@@ -61,7 +58,7 @@ const Card = ({item}) => {
       }
   }
 
-  console.log(user);
+
 
   return (
     <div className="my-5" >
