@@ -41,6 +41,7 @@ const Navbar = () => {
     <ul className="menu menu-horizontal px-1">
       <li><Link to="/">Home</Link></li>
       <li tabIndex={0}> <Link to="/classes">Classes</Link> </li>
+      <li tabIndex={0}> <Link to="/instructor">Instructor</Link> </li>
       <li>
         {
           user ? <Link to="/dashboard"> Dashboard </Link> : ""
@@ -54,6 +55,7 @@ const Navbar = () => {
         user ? <> <div className="flex gap-1">
           <button className="btn" onClick={handleLogOut}> Logout </button>
           <img
+          title={user.displayName}
       className='rounded-full'
       src={user && user.photoURL ? user.photoURL : avatarImg}
       alt='profile'

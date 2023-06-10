@@ -7,7 +7,7 @@ import useCart from "../../hooks/useCart";
 
 const Card = ({item}) => {
 
-  const {name , image ,instructor , available_seats, price , _id} = item;
+  const {name , image ,instructor , available_seats, price , _id } = item;
 
   const {user } = useContext(AuthContext);
   const navigate = useNavigate();

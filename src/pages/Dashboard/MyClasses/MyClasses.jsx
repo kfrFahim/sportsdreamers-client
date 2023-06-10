@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const MyClasses = () => {
      const [cart , refetch] = useCart();
 
-     const total = cart.reduce((sum, item) => item.price + sum, 0);
+    //  const total = cart.reduce((sum, item) => item.price + sum, 0);
 
 
      const handleDelete = (items) => {
@@ -48,8 +48,8 @@ const MyClasses = () => {
           </Helmet>
           <div className="flex justify-between uppercase font-semibold">
             <h2>My cart {cart.length}</h2>
-            <h2>Total Price : ${total}</h2>
-           <Link to="/dashboard/payment"> <button className="btn btn-warning btn-sm">PAY</button></Link>
+            {/* <h2>Total Price : ${total}</h2> */}
+         
           </div>
     
           {/* Table */}
@@ -65,6 +65,7 @@ const MyClasses = () => {
             <th>Item Image</th>
             <th>Item Name</th>
             <th>Price</th>
+            <th>Payment</th>
             <th>Delete</th>
             <th></th>
           </tr>
@@ -88,6 +89,7 @@ const MyClasses = () => {
                 <span className="badge badge-ghost badge-sm">Desktop Support Technician</span> */}
               </td>
               <td>$ {items.price}</td>
+              <td>  <Link to="/dashboard/payment"> <button className="btn btn-warning btn-sm">PAY</button></Link></td>
 
               <td>
                 <button onClick={() => handleDelete(items)} className="btn btn-ghost bg-red-500 text-white"><FaTrashAlt></FaTrashAlt></button>

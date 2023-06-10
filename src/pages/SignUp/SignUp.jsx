@@ -52,12 +52,13 @@ const SignUp = () => {
                 showConfirmButton: false,
                 timer: 1500,
               });
+              setLoading(false);
               navigate(from, { replace: true });
             }
           });
       });
     });
-    setLoading(false);
+   
   };
 
   //  Gooogle Login

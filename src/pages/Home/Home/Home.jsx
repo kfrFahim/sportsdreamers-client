@@ -5,6 +5,7 @@ import PopularClasses from '../PopularClasses/PopularClasses';
 import Featured from '../Featured/Featured';
 import Loader from '../../../components/Loader/Loader';
 import { AuthContext } from '../../../providers/AuthProvider';
+import PopularInstructor from '../PopularInstructor/PopularInstructor';
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
                     <Banner></Banner>
                     <PopularClasses></PopularClasses>
                     <Featured></Featured>
+                    <PopularInstructor></PopularInstructor>
                </Container>
              
           

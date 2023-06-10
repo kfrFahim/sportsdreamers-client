@@ -32,11 +32,13 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        setLoading(false);
         navigate(from, { replace: true });
+        
       })
       .catch((err) => {
         console.log(err.message);
-        setLoading(false);
+       
       });
   };
 
@@ -59,6 +61,7 @@ const Login = () => {
                 .then(res => res.json())
                 .then(() => {
                     navigate(from, { replace: true });
+                    setLoading(false);
                 })
         })
 };

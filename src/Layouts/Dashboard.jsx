@@ -2,12 +2,19 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { Bounce } from "react-awesome-reveal";
 import { FaShoppingCart,FaWallet,FaShoppingBasket,FaHome,FaBars,FaUtensils,FaBook,FaUsers } from 'react-icons/fa';
+import useInstructor from '../hooks/useInstructor';
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
 
 
-  const isAdmin = true;
-  const isInstructor = true;
+  // const isAdmin = false;
+  // const isInstructor = true;
+ 
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+
+
 
 
      return (
@@ -32,14 +39,17 @@ const Dashboard = () => {
           <div>
           {
               isAdmin ? (<div>   <li><NavLink to="/dashboard/adminhome"><FaHome></FaHome> Admin Home</NavLink></li>
-              <li><NavLink to="/dashboard/addItem"> <FaUtensils></FaUtensils> Add an Item</NavLink></li>
-              <li><NavLink to="/dashboard/manageitems"><FaWallet></FaWallet> Manage Items</NavLink></li>
-              <li><NavLink to="/"><FaBook></FaBook> Manage Bookings(not implemented)</NavLink></li>
-              <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> All Users</NavLink></li></div>) 
-              : isInstructor ?
-               (<>isntructor</>) 
+              <li><NavLink to="/dashboard/addItem"> <FaUtensils></FaUtensils> Manage Classes</NavLink></li>
+              <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> Manage Users</NavLink></li></div>) 
+              :
+               isInstructor ?
+               (<><li><NavLink to="/dashboard/addclass"><FaBook></FaBook> Add a Class</NavLink></li>
+               <li><NavLink to="/"><FaUsers></FaUsers>My Classes</NavLink></li></>) 
+
+
                : (<>  <li><NavLink to="/dashboard/myclasses">  <Bounce> <FaShoppingCart></FaShoppingCart> </Bounce> My Selected Classes</NavLink></li>
                <li><NavLink to="/dashboard/myenrollclasses">  <Bounce> <FaShoppingBasket></FaShoppingBasket> </Bounce> My Enrolled Classes</NavLink></li>
+               <li><NavLink to="/dashboard/payment">  <Bounce> <FaShoppingBasket></FaShoppingBasket> </Bounce> Payment</NavLink></li>
                <li><NavLink to="/dashboard/paymenthistory">  <Bounce> <FaWallet></FaWallet> </Bounce>Payment History </NavLink></li>
                </>)
             }
