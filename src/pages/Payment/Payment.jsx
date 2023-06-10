@@ -9,10 +9,7 @@ const Payment = () => {
 
      const [cart] = useCart();
      
-     const totalPrice = cart.find((item ) =>  item._id);
-     const classPrice = totalPrice.price;
-     console.log(price);
-
+    
 
 
    
@@ -25,7 +22,7 @@ const Payment = () => {
                <SectionTitle heading='Payment'></SectionTitle>
 
                <Elements stripe={stripePromise}>
-                <CheckoutForm price={classPrice} ></CheckoutForm>
+                <CheckoutForm  ></CheckoutForm>
             </Elements>
           </div>
      );

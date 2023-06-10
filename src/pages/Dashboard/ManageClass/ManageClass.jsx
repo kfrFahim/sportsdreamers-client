@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Container from "../../../components/Container/Container";
+import React, {  useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 
+
 const ManageClass = () => {
+
   const [newClass, setNewClass] = useState([]);
 
   useEffect(() => {
@@ -12,6 +13,23 @@ const ManageClass = () => {
         setNewClass(data);
       });
   }, []);
+
+  const handleApprove = (id, status) => {
+    // setStatus("approved");
+    // setDisabled(true);
+    fetch(`http://localhost:5000/newclasses/update-status/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
 
   return (
     <div className="w-full p-4 ">
@@ -31,6 +49,7 @@ const ManageClass = () => {
               <th>Email</th>
               <th>Available Seats</th>
               <th>Price</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -53,11 +72,52 @@ const ManageClass = () => {
                 <td>{newcls.instructor_email}</td>
                 <td>{newcls.available_seats}</td>
                 <td>${newcls.price}</td>
+                <td className="text-gray-900 font-semibold">{newcls.status}</td>
                 <td className="flex flex-col gap-1">
-                    <button className="btn btn-sm btn-warning">Approve</button>
-                    <button className="btn btn-sm btn-error">Deny</button>
-                    <button className="btn btn-sm btn-accent">Feedback</button>
-                  
+                  <button
+                    onClick={() => handleApprove(newcls._id, "Approved")}
+                    disabled={newcls.status === "Approved" || newcls.status === "Deny"}
+                    className="btn btn-sm btn-success"
+                    // {`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 ${
+                    //   disabled ? "opacity-50 cursor-not-allowed" : ""
+                    // }`}
+                  >
+                    Approve
+                  </button>
+                  <button
+                    onClick={() => handleApprove(newcls._id, "Deny")}
+                    disabled={newcls.status === "Deny" || newcls.status === "Approved" }
+                    className="btn btn-sm btn-error"
+                    // {`bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2 ${
+                    //   disabled ? "opacity-50 cursor-not-allowed" : ""
+                    // }`}
+                  >
+                    Deny
+                  </button>
+
+                  {/* <button
+                    className="btn btn-sm btn-warning"
+                    // {`bg-gray-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mt-2 ${
+                    //   disabled ? "opacity-50 cursor-not-allowed" : ""
+                    // }`}
+                  >
+                    {" "}
+                    Feedback{" "}
+                  </button> */}
+
+                   {/* Open the modal using ID.showModal() method */}
+<button className="btn" onClick={()=>window.my_modal_1.showModal()}>open modal</button>
+<dialog id="my_modal_1" className="modal">
+  <form method="dialog" className="modal-box">
+    <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p>
+    <div className="modal-action">
+      {/* if there is a button in form, it will close the modal */}
+      <button className="btn">Close</button>
+    </div>
+  </form>
+</dialog> 
+
                 </td>
               </tr>
             ))}

@@ -36,7 +36,7 @@ const PopularClasses = () => {
                
               </p>
               <p className=" md:text-2xl text-[12px]  mb-4 text-center text-black">
-              Available Seats :  {item.available_seats}
+              Number of Students :  {item.students}
               </p>
             </SwiperSlide> )
         }

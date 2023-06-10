@@ -44,7 +44,7 @@ const Dashboard = () => {
               :
                isInstructor ?
                (<><li><NavLink to="/dashboard/addclass"><FaBook></FaBook> Add a Class</NavLink></li>
-               <li><NavLink to="/"><FaUsers></FaUsers>My Classes</NavLink></li></>) 
+               <li><NavLink to="/dashboard/myinsclass"><FaUsers></FaUsers>My Classes</NavLink></li></>) 
 
 
                : (<>  <li><NavLink to="/dashboard/myclasses">  <Bounce> <FaShoppingCart></FaShoppingCart> </Bounce> My Selected Classes</NavLink></li>

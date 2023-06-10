@@ -11,6 +11,7 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import Instructor from "../pages/Home/Instructor/Instructor";
 import Payment from "../pages/Payment/Payment";
 import ManageClass from "../pages/Dashboard/ManageClass/ManageClass";
+import MyInsClass from "../pages/Dashboard/MyInsClass/MyInsClass";
 
 
 export const router = createBrowserRouter([
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "manageclass",
         element: <ManageClass></ManageClass>,
+      },
+      {
+        path:"myinsclass",
+        element:<MyInsClass></MyInsClass>
       }
     ],
   },

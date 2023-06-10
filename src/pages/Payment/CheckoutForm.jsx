@@ -16,7 +16,7 @@ const CheckoutForm = ({classPrice}) => {
 
 
      useEffect(()=>{
-          axiosSecure.post('/create-payment-intent', {classPrice})
+          axiosSecure.post('/create-payment-intent')
           .then(res => {
                console.log(res.data.clientSecret)
           })

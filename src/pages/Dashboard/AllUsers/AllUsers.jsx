@@ -79,7 +79,6 @@ const handleMakeInstructor  = user =>{
                             <th>Email</th>
                             <th>Admin</th>
                             <th>Instructor</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,7 +93,7 @@ const handleMakeInstructor  = user =>{
                                 <td>{ user.role === 'instructor' ? 'Instructor' :
                                     <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost bg-orange-600  text-white"><FaUserShield></FaUserShield></button> 
                                     }</td>
-                                <td><button onClick={() => handleDelete(user)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button></td>
+                              
                             </tr>)
                         }
                         
