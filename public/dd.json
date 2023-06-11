@@ -1,0 +1,93 @@
+[{
+  "name": "football",
+  "price": { "$numberInt": "30" },
+  "available_seats": "2",
+  "instructor_name": "Boss Baby",
+  "instructor_email": "boss@baby.com",
+  "image": "https://i.ibb.co/8mBpVrz/football.jpg",
+  "status": "Approved"
+},
+
+
+{
+     "image": "https://i.ibb.co/9WjPcn8/football.jpg",
+     "name": "Football Training",
+     "instructor_name": "John Smith",
+     "instructor_email": "john.smith@gmail.com",
+     "available_seats": 20,
+     "students":29,
+     "price": 50,
+     "status": "Approved"
+   },
+   {
+      "image": "https://i.ibb.co/mDXZpqp/cricket.webp",
+      "name": "Cricket Training",
+      "instructor": "Adam Davis",
+      "instructor_email": "adam.davis@gmail.com",
+      "available_seats": 30,
+      "students":24,
+      "price": 80,
+      "status": "Approved"
+    },
+   {
+     "image": "https://i.ibb.co/GCJdhLg/tennis.jpg",
+     "name": "Tennis Lessons",
+     "instructor": "Emily Johnson",
+     "instructor_email": "amily.johnson@yahoo.com",
+     "available_seats": 15,
+     "students":17,
+     "price": 60,
+     "status": "Approved"
+   },
+   {
+     "image": "https://i.ibb.co/mSLQv1J/basketball.png",
+     "name": "Basketball Skills Development",
+     "instructor": "Michael Davis",
+     "instructor_email": "michael.davis@gmail.com",
+     "available_seats": 12,
+     "students":30,
+     "price": 70,
+     "status": "Approved"
+   },
+   {
+     "image": "https://i.ibb.co/86bLTbB/swimming.jpg",
+     "name": "Swimming Lessons",
+     "instructor": "Jessica Thompson",
+     "instructor_email": "jessica.thompson@gmail.com",
+     "available_seats": 18,
+     "students":29,
+     "price": 55,
+     "status": "Approved"
+   },
+   {
+     "image": "https://i.ibb.co/6nQJp90/gymnastics.jpg",
+     "name": "Gymnastics Training",
+     "instructor": "David Wilson",
+     "instructor_email": "david.wilson@gmail.com",
+     "available_seats": 10,
+     "students":50,
+     "price": 75
+   }
+
+
+{
+     "name": "football",
+     "price": { "$numberInt": "30" },
+     "available_seats": "2",
+     "instructor_name": "Boss Baby",
+     "instructor_email": "boss@baby.com",
+     "image": "https://i.ibb.co/8mBpVrz/football.jpg",
+     "status": "Approved"
+   }
+
+   {"_id":{"$oid":"64817a409b5300b1db9bbd91"},
+   "image":"https://i.ibb.co/9WjPcn8/football.jpg",
+   "name":"Football Training",
+   "instructor":"John Smith",
+   "price":{"$numberInt":"50"},
+   "students":{"$numberInt":"35"},
+   "available_seats":"10"}
+
+]
+
+

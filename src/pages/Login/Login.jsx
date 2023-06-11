@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import { TbFidgetSpinner } from "react-icons/tb";
@@ -14,12 +14,13 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+    const [error, setError] = useState("");
 
     const {
       register,
       handleSubmit,
       reset,
-      formState: { errors },
+     
     } = useForm();
     
     
@@ -40,9 +41,9 @@ const Login = () => {
         navigate(from, { replace: true });
         
       })
-      .catch((err) => {
-        console.log(err.message);
-       
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
       });
    
     }
@@ -68,6 +69,10 @@ const Login = () => {
                     navigate(from, { replace: true });
                     setLoading(false);
                 })
+                .catch((error) => {
+                  console.log(error);
+                  setError(error.message);
+                });
         })
 };
 
@@ -115,6 +120,7 @@ const Login = () => {
               action=""
               className="space-y-6 ng-untouched ng-pristine ng-valid"
             >
+               <p className="ml-[40px] my-3 text-red-500">{error}</p>
               <div className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm">
@@ -153,14 +159,7 @@ const Login = () => {
                   type="submit"
                   className="bg-gray-500 w-full rounded-md py-3 text-white"
                 >
-                  {loading ? (
-                    <TbFidgetSpinner
-                      className="mx-auto "
-                      size={24}
-                    ></TbFidgetSpinner>
-                  ) : (
-                    "Continue"
-                  )}
+                 Login
                 </button>
               </div>
             </form>

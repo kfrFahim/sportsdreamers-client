@@ -68,8 +68,9 @@ const Card = ({item}) => {
   <p className="absolute right-0 mr-4 mt-4 bg-slate-900 text-white p-3 font-semibold"> ${item.price} </p>
   <div className="card-body">
     <h2 className="card-title">{item.name}</h2>
-    <h2 className="text-xl font-medium"> Instructor : {item.instructor}</h2>
+    <h2 className="text-xl font-medium"> Instructor : {item.instructor_name}</h2>
     <p>Available Seats : {item.available_seats}</p>
+    <p>Price : ${item.price}</p>
     
     <div className="card-actions justify-end">
       <button disabled={isAdmin || isInstructor || item?.available_seats===0} onClick={()=> handleAddToCart(item)} className="btn btn-outline bg-slate-700 text-white border-[1px] hover:bg-slate-200 hover:text-black">Select</button>

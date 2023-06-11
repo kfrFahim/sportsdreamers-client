@@ -103,13 +103,16 @@ const ManageClass = () => {
                     Deny
                   </button>
 
-                  <div>
-                <button className="btn">asdfsd</button>
-                 </div>
 
+                  
+                
                    
                 </td>
+
+           
+                
               </tr>
+              
             ))}
           </tbody>
         </table>

@@ -5,7 +5,7 @@ const UserHome = () => {
      const {user} = useContext(AuthContext);
      return (
           <div>
-                <h2>Welcome Back , {user.displayName}</h2>
+              <h2 className='text-3xl font-semibold' >Welcome Back , {user.displayName}</h2>
           </div>
      );
 };

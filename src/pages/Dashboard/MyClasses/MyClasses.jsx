@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const MyClasses = () => {
      const [cart , refetch] = useCart();
+     
 
      const total = cart.reduce((sum, item) => item.price + sum, 0);
 
@@ -90,7 +91,6 @@ const MyClasses = () => {
               </td>
               <td>$ {items.price}</td>
             
-
               <td>
                 <button onClick={() => handleDelete(items)} className="btn btn-ghost bg-red-500 text-white"><FaTrashAlt></FaTrashAlt></button>
               </td>

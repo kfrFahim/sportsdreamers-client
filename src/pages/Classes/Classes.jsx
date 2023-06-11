@@ -4,11 +4,27 @@ import Cover from "../../components/Cover/Cover";
 import coverImg from '../../assets/banner/baground.jpg';
 import useClasses from "../../hooks/useClasses";
 import Card from "./Card";
+import { useEffect, useState } from "react";
 
 
 const Classes = () => {
 
-  const [classes] = useClasses();
+  // const [classes] = useClasses();
+
+
+    const [classes, setClasses] = useState([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      fetch("http://localhost:5000/apclasses")
+        .then((res) => res.json())
+        .then((data) => {
+          setClasses(data);
+          setLoading(false);
+        });
+    }, []);
+
+
   return (
 
     <div>

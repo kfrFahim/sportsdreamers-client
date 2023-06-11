@@ -61,7 +61,7 @@ const MyInsClass = () => {
                     <td>${newcls.price}</td>
                     <td className="text-gray-900 font-semibold">{newcls.status}</td>
                     <td>
-                      No Feedback
+                     Feedback
                     </td>
                   </tr>
                 ))}

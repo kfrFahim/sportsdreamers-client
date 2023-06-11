@@ -33,7 +33,7 @@ const SignUp = () => {
       console.log(result.user);
 
       updateUserProfile(data.name, data.photoURL).then(() => {
-        const saveUser = {name: data.name , email: data.email }
+        const saveUser = {name: data.name , email: data.email   }
         fetch("http://localhost:5000/users",{
           method:"POST",
           headers:{
@@ -138,7 +138,8 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                  {...register("PhotoURL", { required: true })}
+                  name="photoURL"
+                  {...register("photoURL", { required: true })}
                   placeholder="PhotoURL"
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
@@ -193,16 +194,9 @@ const SignUp = () => {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className="bg-rose-500 w-full rounded-md py-3 text-white"
+                  className="bg-gray-500 w-full rounded-md py-3 text-white"
                 >
-                  {loading ? (
-                    <TbFidgetSpinner
-                      className="mx-auto animate-spin"
-                      size={24}
-                    ></TbFidgetSpinner>
-                  ) : (
-                    "Continue"
-                  )}
+                  SignUp
                 </button>
               </div>
             </form>
