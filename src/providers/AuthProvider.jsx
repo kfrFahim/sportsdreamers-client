@@ -13,7 +13,6 @@ import {
 import app from "../firebase/firebase.config";
 import axios from "axios";
 
-
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
@@ -62,19 +61,20 @@ const AuthProvider = ({ children }) => {
 
       // get and set token
 
-     if(currentUser){
-      axios.post('http://localhost:5000/jwt', {email: currentUser.email , })
-      .then(data => {
-        // console.log(data.data.token);
-        localStorage.setItem('access-token', data.data.token)
-       
-      })
-     }else{
-      localStorage.removeItem('access-token')
-     }
+      if (currentUser) {
+        axios
+          .post("https://summer-camp-server-mu-one.vercel.app/jwt", {
+            email: currentUser.email,
+          })
+          .then((data) => {
+            // console.log(data.data.token);
+            localStorage.setItem("access-token", data.data.token);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
 
-     setLoading(false);
-      
+      setLoading(false);
     });
     return () => {
       return unsubscribe();

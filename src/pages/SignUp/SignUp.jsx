@@ -33,13 +33,13 @@ const SignUp = () => {
       console.log(result.user);
 
       updateUserProfile(data.name, data.photoURL).then(() => {
-        const saveUser = {name: data.name , email: data.email   }
-        fetch("http://localhost:5000/users",{
-          method:"POST",
-          headers:{
-            'content-type': "application/json"
+        const saveUser = { name: data.name, email: data.email };
+        fetch("https://summer-camp-server-mu-one.vercel.app/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
           },
-          body:JSON.stringify(saveUser)
+          body: JSON.stringify(saveUser),
         })
           .then((res) => res.json())
           .then((data) => {
@@ -58,31 +58,31 @@ const SignUp = () => {
           });
       });
     });
-   
   };
 
   //  Gooogle Login
 
   const handleGoogleSignIn = () => {
-    signInWithGoogle()
-        .then(result => {
-            const loggedInUser = result.user;
-            console.log(loggedInUser);
-            const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-            fetch('http://localhost:5000/users', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(saveUser)
-            })
-                .then(res => res.json())
-                .then(() => {
-                    navigate(from, { replace: true });
-                })
-        })
-};
-
+    signInWithGoogle().then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      const saveUser = {
+        name: loggedInUser.displayName,
+        email: loggedInUser.email,
+      };
+      fetch("https://summer-camp-server-mu-one.vercel.app/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+        });
+    });
+  };
 
   const password = watch("password", "");
 

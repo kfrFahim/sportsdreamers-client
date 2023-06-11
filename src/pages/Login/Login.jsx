@@ -4,29 +4,22 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
-import { TbFidgetSpinner } from "react-icons/tb";
 import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { loading, setLoading, signIn, signInWithGoogle, resetPassword } =
     useContext(AuthContext);
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
-    const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const [error, setError] = useState("");
 
-    const {
-      register,
-      handleSubmit,
-      reset,
-     
-    } = useForm();
-    
-    
-    const onSubmit = (data) => {
-      console.log(data);
-      signIn(data.email, data.password)
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    signIn(data.email, data.password)
       .then((result) => {
         console.log(result.user);
         Swal.fire({
@@ -36,45 +29,44 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        reset()
+        reset();
         setLoading(false);
         navigate(from, { replace: true });
-        
       })
       .catch((error) => {
         console.log(error);
         setError(error.message);
       });
-   
-    }
-
+  };
 
   //  Gooogle Login
 
   const handleGoogleSignIn = () => {
-    signInWithGoogle()
-        .then(result => {
-            const loggedInUser = result.user;
-            console.log(loggedInUser);
-            const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-            fetch('http://localhost:5000/users', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(saveUser)
-            })
-                .then(res => res.json())
-                .then(() => {
-                    navigate(from, { replace: true });
-                    setLoading(false);
-                })
-                .catch((error) => {
-                  console.log(error);
-                  setError(error.message);
-                });
+    signInWithGoogle().then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      const saveUser = {
+        name: loggedInUser.displayName,
+        email: loggedInUser.email,
+      };
+      fetch("https://summer-camp-server-mu-one.vercel.app/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+          setLoading(false);
         })
-};
+        .catch((error) => {
+          console.log(error);
+          setError(error.message);
+        });
+    });
+  };
 
   //  handle password reset
 
@@ -115,12 +107,12 @@ const Login = () => {
               </p>
             </div>
             <form
-             onSubmit={handleSubmit(onSubmit)} 
+              onSubmit={handleSubmit(onSubmit)}
               noValidate=""
               action=""
               className="space-y-6 ng-untouched ng-pristine ng-valid"
             >
-               <p className="ml-[40px] my-3 text-red-500">{error}</p>
+              <p className="ml-[40px] my-3 text-red-500">{error}</p>
               <div className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm">
@@ -159,7 +151,7 @@ const Login = () => {
                   type="submit"
                   className="bg-gray-500 w-full rounded-md py-3 text-white"
                 >
-                 Login
+                  Login
                 </button>
               </div>
             </form>

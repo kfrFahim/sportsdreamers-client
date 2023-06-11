@@ -6,6 +6,7 @@ import Featured from '../Featured/Featured';
 import Loader from '../../../components/Loader/Loader';
 import { AuthContext } from '../../../providers/AuthProvider';
 import PopularInstructor from '../PopularInstructor/PopularInstructor';
+import Reviews from '../Reviews/Reviews';
 
 
 const Home = () => {
@@ -22,6 +23,7 @@ const Home = () => {
                     <PopularClasses></PopularClasses>
                     <Featured></Featured>
                     <PopularInstructor></PopularInstructor>
+                    <Reviews></Reviews>
                </Container>
              
           

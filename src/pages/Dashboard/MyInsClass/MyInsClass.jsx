@@ -1,23 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import { AuthContext } from "../../../providers/AuthProvider";
+// import { AuthContext } from "../../../providers/AuthProvider";
 
 const MyInsClass = () => {
   const [myInsclass, setMyInsClass] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/newclasses/${user?.email}`)
+    fetch(`https://summer-camp-server-mu-one.vercel.app/newclasses`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setMyInsClass(data);
         setLoading(false);
       });
-  }, [user?.email]);
+  }, []);
 
   return (
     <div className="w-full p-4 ">

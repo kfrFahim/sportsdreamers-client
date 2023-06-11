@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
-
 const ManageClass = () => {
   const [newClass, setNewClass] = useState([]);
 
   const [singleClass, setSingleClass] = useState({});
-  const [value ,  setValue] = useState("")
+  const [value, setValue] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/newclasses")
+    fetch("https://summer-camp-server-mu-one.vercel.app/newclasses")
       .then((res) => res.json())
       .then((data) => {
         setNewClass(data);
@@ -18,17 +17,20 @@ const ManageClass = () => {
   }, []);
 
   const handleApprove = (id, status) => {
-    fetch(`http://localhost:5000/newclasses/update-status/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ status }),
-    })
+    fetch(
+      `https://summer-camp-server-mu-one.vercel.app/newclasses/update-status/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ status }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        fetch("http://localhost:5000/newclasses")
+        fetch("https://summer-camp-server-mu-one.vercel.app/newclasses")
           .then((res) => res.json())
           .then((data) => {
             setNewClass(data);
@@ -37,17 +39,20 @@ const ManageClass = () => {
   };
 
   const handleFeedback = (id, feedback) => {
-    fetch(`http://localhost:5000/newclasses/update-status/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify( feedback ),
-    })
+    fetch(
+      `https://summer-camp-server-mu-one.vercel.app/newclasses/update-status/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(feedback),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setSingleClass({})
+        setSingleClass({});
       });
   };
 
@@ -119,16 +124,15 @@ const ManageClass = () => {
                   >
                     Deny
                   </button>
-                    <button
-                       className="btn btn-sm btn-info"
-                      onClick={() => {
-                        window.my_modal_1.showModal();
-                        setSingleClass(newcls)
-                      }}
-                    >
-                      FeedBack
-                    </button>
-                  
+                  <button
+                    className="btn btn-sm btn-info"
+                    onClick={() => {
+                      window.my_modal_1.showModal();
+                      setSingleClass(newcls);
+                    }}
+                  >
+                    FeedBack
+                  </button>
                 </td>
               </tr>
             ))}
@@ -138,10 +142,21 @@ const ManageClass = () => {
       <dialog id="my_modal_1" className="modal">
         <form method="dialog" className="modal-box">
           <h3 className="font-bold text-lg">Hello!</h3>
-          <input onChange={e=>{setValue(e.target.value)}} value={value} type="text" />
+          <input
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+            value={value}
+            type="text"
+          />
           <div className="modal-action">
             {/* if there is a button in form, it will close the modal */}
-            <button onClick={() => handleFeedback(singleClass._id, {feedback: value})} className="btn">
+            <button
+              onClick={() =>
+                handleFeedback(singleClass._id, { feedback: value })
+              }
+              className="btn"
+            >
               Add
             </button>
           </div>

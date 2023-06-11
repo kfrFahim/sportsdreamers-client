@@ -1,0 +1,32 @@
+[
+  {
+      "_id": "643010e0f5a7e52ce1e8fa65",
+      "name": "Sarah Johnson",
+      "details": "My experience with this summer camp was fantastic. The communication with the camp administration was seamless, and they were always available to address any concerns or questions. The camp provided a variety of outdoor adventures, team-building exercises, and creative workshops, ensuring that the kids had a well-rounded experience. I highly recommend this camp for an unforgettable summer!",
+      "rating": 4
+  },
+  {
+      "_id": "643010f9f5a7e52ce1e8fa66",
+      "name": "David Williams",
+      "details": "I cannot say enough good things about this summer camp. The program was well-structured, and the activities were both educational and entertaining. My child learned new skills, made lifelong friends, and gained a newfound sense of independence. The camp director and staff deserve applause for their dedication and commitment.",
+      "rating": 3
+  },
+  {
+      "_id": "6430110af5a7e52ce1e8fa67",
+      "name": "Emily Roberts",
+      "details": "This summer camp exceeded my expectations. The campgrounds were beautiful and well-maintained, and the facilities were top-notch. The camp counselors were knowledgeable and energetic, creating a safe and fun environment for the kids. I would definitely send my child back next year.",
+      "rating": 5
+  },
+  {
+      "_id": "64301123f5a7e52ce1e8fa68",
+      "name": "Michael Thompson",
+      "details": "I was impressed by the organization and structure of this summer camp. The counselors were well-trained and attentive to the kids' needs. The camp offered a wide range of activities, from sports to arts and crafts, ensuring that every child found something they enjoyed. My child had a blast!",
+      "rating": 4
+  },
+  {
+      "_id": "6430113af5a7e52ce1e8fa69",
+      "name": "Jessica Anderson",
+      "details": "My kids had an amazing time at this summer camp! The staff was friendly and professional, and the activities were diverse and engaging. They came back home with new friends and unforgettable memories. Highly recommended!",
+      "rating": 5
+  }
+]
