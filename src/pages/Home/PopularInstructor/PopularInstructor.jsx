@@ -32,7 +32,7 @@ const PopularInstructor = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
 
       {
-        instructor.map(item => <InstructorCard item={item}></InstructorCard>)
+        instructor.map(item => <InstructorCard key={item._id} item={item}></InstructorCard>)
       }
       </div>
 

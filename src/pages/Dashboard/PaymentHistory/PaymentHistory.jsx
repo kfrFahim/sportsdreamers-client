@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { Helmet } from 'react-helmet';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const PaymentHistory = () => {
 
      const [patments, setPayments] = useState([]);
      const [loading, setLoading] = useState(true);
+     const {user} = useContext(AuthContext)
+     console.log(user);
    
      useEffect(() => {
-       fetch("http://localhost:5000/payments")
+       fetch(`http://localhost:5000/payments/${user?.email}`)
          .then((res) => res.json())
          .then((data) => {
           setPayments(data);
            setLoading(false);
          });
-     }, []);
+     }, [user?.email]);
      
 
      return (
@@ -24,7 +27,6 @@ const PaymentHistory = () => {
             <Helmet>
                 <title> SportsDreamers | All users</title>
             </Helmet>
-            <h3 className="text-3xl font-semibold my-4">Total Users: {patments.length}</h3>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     {/* head */}

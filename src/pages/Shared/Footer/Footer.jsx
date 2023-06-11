@@ -27,7 +27,7 @@ const Footer = () => {
             <h3 className="text-xl font-semibold my-5">ABOUT US</h3>
             <ul>
               <li>Help Center</li>
-              <li className="py-2">Store Location</li>
+              <li className="py-2">FAQ</li>
               <li>Privacy Policy</li>
               <li className="py-2">Terms of Service</li>
             </ul>

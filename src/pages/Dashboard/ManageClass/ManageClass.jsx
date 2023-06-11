@@ -1,13 +1,13 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Dialog } from '@headlessui/react'
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 
 const ManageClass = () => {
-
   const [newClass, setNewClass] = useState([]);
-  
-  
+
+  const [singleClass, setSingleClass] = useState({});
+  const [value ,  setValue] = useState("")
 
   useEffect(() => {
     fetch("http://localhost:5000/newclasses")
@@ -18,8 +18,6 @@ const ManageClass = () => {
   }, []);
 
   const handleApprove = (id, status) => {
-    // setStatus("approved");
-    // setDisabled(true);
     fetch(`http://localhost:5000/newclasses/update-status/${id}`, {
       method: "PUT",
       headers: {
@@ -31,19 +29,34 @@ const ManageClass = () => {
       .then((data) => {
         console.log(data);
         fetch("http://localhost:5000/newclasses")
-      .then((res) => res.json())
-      .then((data) => {
-        setNewClass(data);
-      });
+          .then((res) => res.json())
+          .then((data) => {
+            setNewClass(data);
+          });
       });
   };
 
+  const handleFeedback = (id, feedback) => {
+    fetch(`http://localhost:5000/newclasses/update-status/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify( feedback ),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setSingleClass({})
+      });
+  };
 
   return (
     <div className="w-full p-4 ">
       <Helmet>
         <title> SportsDreamers | All users</title>
       </Helmet>
+      <SectionTitle heading="Manage Classes"></SectionTitle>
       {/* <h3 className="text-3xl font-semibold my-4">Total Users: {users.length}</h3> */}
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
@@ -84,7 +97,9 @@ const ManageClass = () => {
                 <td className="flex flex-col gap-1">
                   <button
                     onClick={() => handleApprove(newcls._id, "Approved")}
-                    disabled={newcls.status === "Approved" || newcls.status === "Deny"}
+                    disabled={
+                      newcls.status === "Approved" || newcls.status === "Deny"
+                    }
                     className="btn btn-sm btn-success"
                     // {`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 ${
                     //   disabled ? "opacity-50 cursor-not-allowed" : ""
@@ -94,7 +109,9 @@ const ManageClass = () => {
                   </button>
                   <button
                     onClick={() => handleApprove(newcls._id, "Deny")}
-                    disabled={newcls.status === "Deny" || newcls.status === "Approved" }
+                    disabled={
+                      newcls.status === "Deny" || newcls.status === "Approved"
+                    }
                     className="btn btn-sm btn-error"
                     // {`bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2 ${
                     //   disabled ? "opacity-50 cursor-not-allowed" : ""
@@ -102,21 +119,34 @@ const ManageClass = () => {
                   >
                     Deny
                   </button>
-
-
+                    <button
+                       className="btn btn-sm btn-info"
+                      onClick={() => {
+                        window.my_modal_1.showModal();
+                        setSingleClass(newcls)
+                      }}
+                    >
+                      FeedBack
+                    </button>
                   
-                
-                   
                 </td>
-
-           
-                
               </tr>
-              
             ))}
           </tbody>
         </table>
       </div>
+      <dialog id="my_modal_1" className="modal">
+        <form method="dialog" className="modal-box">
+          <h3 className="font-bold text-lg">Hello!</h3>
+          <input onChange={e=>{setValue(e.target.value)}} value={value} type="text" />
+          <div className="modal-action">
+            {/* if there is a button in form, it will close the modal */}
+            <button onClick={() => handleFeedback(singleClass._id, {feedback: value})} className="btn">
+              Add
+            </button>
+          </div>
+        </form>
+      </dialog>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useClasses from "../../../hooks/useClasses";
 
 const PopularClasses = () => {
-  const [classes] = useClasses()
+  const [classes] = useClasses();
   return (
     <div>
       <SectionTitle heading={"Popular Classes"}></SectionTitle>

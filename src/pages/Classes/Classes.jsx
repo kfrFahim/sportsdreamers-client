@@ -2,7 +2,6 @@
 import { Helmet } from "react-helmet";
 import Cover from "../../components/Cover/Cover";
 import coverImg from '../../assets/banner/baground.jpg';
-import useClasses from "../../hooks/useClasses";
 import Card from "./Card";
 import { useEffect, useState } from "react";
 

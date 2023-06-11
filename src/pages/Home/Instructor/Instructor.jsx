@@ -5,35 +5,34 @@ import InstructorCard from "./InstructorCard";
 import Cover from "../../../components/Cover/Cover";
 
 const Instructor = () => {
-     const [instructor, setInstructor] = useState([]);
-     const [loading, setLoading] = useState(true);
-   
-     useEffect(() => {
-       fetch("http://localhost:5000/instructor")
-         .then((res) => res.json())
-         .then((data) => {
-           setInstructor(data);
-           setLoading(false);
-         });
-     }, []);
+  const [instructor, setInstructor] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/instructor")
+      .then((res) => res.json())
+      .then((data) => {
+        setInstructor(data);
+        setLoading(false);
+      });
+  }, []);
   return (
-    
-      <Container>
+    <Container>
       <Helmet>
         <title>SportsDremars || Instructor</title>
       </Helmet>
-  
-      <Cover img="https://i.ibb.co/gMgLV1H/isntructors.webp" title={"Our Instructors"}></Cover>
+
+      <Cover
+        img="https://i.ibb.co/gMgLV1H/isntructors.webp"
+        title={"Our Instructors"}
+      ></Cover>
 
       <div className="grid grid-cols-1 md:grid-cols-3">
-
-      {
-        instructor.map(item => <InstructorCard item={item}></InstructorCard>)
-      }
+        {instructor.map((item) => (
+          <InstructorCard item={item}></InstructorCard>
+        ))}
       </div>
-
-      </Container>
-    
+    </Container>
   );
 };
 
