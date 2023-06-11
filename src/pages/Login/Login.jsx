@@ -1,7 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Helmet } from "react-helmet";
@@ -10,19 +11,21 @@ const Login = () => {
   const { loading, setLoading, signIn, signInWithGoogle, resetPassword } =
     useContext(AuthContext);
 
-  const emailRef = useRef();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
-  //  handle Submit Login
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    console.log(email, password);
-    signIn(email, password)
+    const {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors },
+    } = useForm();
+    
+    
+    const onSubmit = (data) => {
+      console.log(data);
+      signIn(data.email, data.password)
       .then((result) => {
         console.log(result.user);
         Swal.fire({
@@ -32,6 +35,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        reset()
         setLoading(false);
         navigate(from, { replace: true });
         
@@ -40,9 +44,10 @@ const Login = () => {
         console.log(err.message);
        
       });
-  };
+   
+    }
 
-  //  Gooogle Login
+
   //  Gooogle Login
 
   const handleGoogleSignIn = () => {
@@ -105,7 +110,7 @@ const Login = () => {
               </p>
             </div>
             <form
-              onSubmit={handleSubmit}
+             onSubmit={handleSubmit(onSubmit)} 
               noValidate=""
               action=""
               className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -116,14 +121,13 @@ const Login = () => {
                     Email address
                   </label>
                   <input
-                    ref={emailRef}
                     type="email"
                     name="email"
                     id="email"
-                    required
                     placeholder="Email"
                     className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                     data-temp-mail-org="0"
+                    {...register("email", { required: true })}
                   />
                 </div>
                 <div>
@@ -139,6 +143,7 @@ const Login = () => {
                     required
                     placeholder="Password"
                     className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                    {...register("password", { required: true })}
                   />
                 </div>
               </div>
@@ -146,11 +151,11 @@ const Login = () => {
               <div>
                 <button
                   type="submit"
-                  className="bg-rose-500 w-full rounded-md py-3 text-white"
+                  className="bg-gray-500 w-full rounded-md py-3 text-white"
                 >
                   {loading ? (
                     <TbFidgetSpinner
-                      className="mx-auto animate-spin"
+                      className="mx-auto "
                       size={24}
                     ></TbFidgetSpinner>
                   ) : (

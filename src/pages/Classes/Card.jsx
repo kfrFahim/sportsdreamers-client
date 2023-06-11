@@ -61,7 +61,7 @@ const Card = ({item}) => {
 
 
   return (
-    <div className="my-5" >
+    <div className="my-5 " >
       <Container>
       <div className="card w-96 md:h-[350px] bg-base-100 shadow-xl">
   <figure><img src={item.image} alt="Shoes" /></figure>

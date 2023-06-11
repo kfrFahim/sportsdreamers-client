@@ -30,6 +30,11 @@ const ManageClass = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        fetch("http://localhost:5000/newclasses")
+      .then((res) => res.json())
+      .then((data) => {
+        setNewClass(data);
+      });
       });
   };
 
@@ -98,15 +103,9 @@ const ManageClass = () => {
                     Deny
                   </button>
 
-                  {/* <button
-                    className="btn btn-sm btn-warning"
-                    // {`bg-gray-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mt-2 ${
-                    //   disabled ? "opacity-50 cursor-not-allowed" : ""
-                    // }`}
-                  >
-                    {" "}
-                    Feedback{" "}
-                  </button> */}
+                  <div>
+                <button className="btn">asdfsd</button>
+                 </div>
 
                    
                 </td>

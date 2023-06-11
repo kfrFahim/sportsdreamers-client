@@ -12,6 +12,12 @@ import Instructor from "../pages/Home/Instructor/Instructor";
 import Payment from "../pages/Payment/Payment";
 import ManageClass from "../pages/Dashboard/ManageClass/ManageClass";
 import MyInsClass from "../pages/Dashboard/MyInsClass/MyInsClass";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import Error from "../pages/Error/Error";
+import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 
 
 export const router = createBrowserRouter([
@@ -43,12 +49,32 @@ export const router = createBrowserRouter([
     element: <SignUp></SignUp>,
   },
   {
+    path:"*",
+    element:<Error></Error>
+  },
+  {
     path: "dashboard",
     element: <Dashboard></Dashboard>,
     children: [
       {
+        path:"userhome",
+        element:<UserHome></UserHome>
+      },
+      {
+        path:"adminhome",
+        element:<AdminHome></AdminHome>
+      },
+      {
+        path: "instructorhome",
+        element: <InstructorHome></InstructorHome>
+      },
+      {
         path: "myclasses",
         element: <MyClasses></MyClasses>,
+      },
+      {
+        path: "myenrollclasses",
+        element: <EnrolledClasses></EnrolledClasses>,
       },
       {
         path: "allusers",
@@ -69,6 +95,10 @@ export const router = createBrowserRouter([
       {
         path:"myinsclass",
         element:<MyInsClass></MyInsClass>
+      },
+      {
+        path:"paymenthistory",
+        element:<PaymentHistory></PaymentHistory>
       }
     ],
   },

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "../../../components/Container/Container";
 import { Helmet } from "react-helmet";
-
-import coverImg from '../../../assets/banner/baground.jpg';
 import InstructorCard from "./InstructorCard";
 import Cover from "../../../components/Cover/Cover";
 
@@ -25,7 +23,7 @@ const Instructor = () => {
         <title>SportsDremars || Instructor</title>
       </Helmet>
   
-      <Cover img={coverImg} title={"Our Instructors"}></Cover>
+      <Cover img="https://i.ibb.co/gMgLV1H/isntructors.webp" title={"Our Instructors"}></Cover>
 
       <div className="grid grid-cols-1 md:grid-cols-3">
 

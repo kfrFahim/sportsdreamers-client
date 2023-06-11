@@ -16,15 +16,19 @@ const Banner = () => {
 <Carousel>
       <div>
         <img src={img1} />
+        <p className="absolute top-0 left-[35%] mt-28 md:mt-[40%] md:text-4xl bg-gray-50 opacity-50 rounded p-3 text-black">Youth Cricket Camp</p>
       </div>
       <div>
         <img src={img2} />
+        <p className="absolute top-0 left-[35%] mt-28 md:mt-[40%] md:text-4xl bg-gray-50 opacity-50 rounded p-3 text-black">Football Skills Development Camp</p>
       </div>
       <div className="md:h-[500px]">
         <img src={img3} />
+        <p className="absolute top-0 left-[35%] mt-28 md:mt-[40%] md:text-4xl bg-gray-50 opacity-50 rounded p-3 text-black">Join Our Basketball Development Camp</p>
       </div>
       <div className="md:h-[500px]">
         <img src={img4} />
+        <p className="absolute top-0 left-[35%] mt-28 md:mt-[40%] md:text-4xl bg-gray-50 opacity-50 rounded p-3 text-black">Best Swimming instructor</p>
       </div>
     </Carousel>
 </div>

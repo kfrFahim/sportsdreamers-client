@@ -43,11 +43,14 @@ const Dashboard = () => {
               <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> Manage Users</NavLink></li></div>) 
               :
                isInstructor ?
-               (<><li><NavLink to="/dashboard/addclass"><FaBook></FaBook> Add a Class</NavLink></li>
+               (<> <li><NavLink to="/dashboard/instructorhome"><FaHome></FaHome> Instructor Home</NavLink></li>
+               <li><NavLink to="/dashboard/addclass"><FaBook></FaBook> Add a Class</NavLink></li>
                <li><NavLink to="/dashboard/myinsclass"><FaUsers></FaUsers>My Classes</NavLink></li></>) 
 
 
-               : (<>  <li><NavLink to="/dashboard/myclasses">  <Bounce> <FaShoppingCart></FaShoppingCart> </Bounce> My Selected Classes</NavLink></li>
+               : (<> 
+               <li><NavLink to="/dashboard/userhome">  <Bounce> <FaHome></FaHome> </Bounce> User Home </NavLink></li>
+                <li><NavLink to="/dashboard/myclasses">  <Bounce> <FaShoppingCart></FaShoppingCart> </Bounce> My Selected Classes</NavLink></li>
                <li><NavLink to="/dashboard/myenrollclasses">  <Bounce> <FaShoppingBasket></FaShoppingBasket> </Bounce> My Enrolled Classes</NavLink></li>
                <li><NavLink to="/dashboard/payment">  <Bounce> <FaShoppingBasket></FaShoppingBasket> </Bounce> Payment</NavLink></li>
                <li><NavLink to="/dashboard/paymenthistory">  <Bounce> <FaWallet></FaWallet> </Bounce>Payment History </NavLink></li>
