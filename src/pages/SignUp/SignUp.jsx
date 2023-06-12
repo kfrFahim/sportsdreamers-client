@@ -101,6 +101,12 @@ const SignUp = () => {
             />
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-gray-100 text-gray-900">
+          <div className="text-center">
+              <h1 className="text-4xl font-bold">Sign up</h1>
+              <p className="text-sm text-gray-400">
+                Sign in to access your account
+              </p>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -194,7 +200,7 @@ const SignUp = () => {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className="bg-gray-500 w-full rounded-md py-3 text-white"
+                  className="bg-[#212180] w-full rounded-md py-3 text-white btn btn-outline btn-success"
                 >
                   SignUp
                 </button>

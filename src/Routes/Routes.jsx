@@ -18,6 +18,8 @@ import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import Error from "../pages/Error/Error";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
 
 
 export const router = createBrowserRouter([
@@ -78,7 +80,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "allusers",
-        element: <AllUsers></AllUsers>,
+        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>,
       },
       {
         path: "payment",
@@ -86,15 +88,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "addclass",
-        element: <AddClass></AddClass>,
+        element:<InstructorRoute><AddClass></AddClass></InstructorRoute>,
       },
       {
         path: "manageclass",
-        element: <ManageClass></ManageClass>,
+        element: <AdminRoute><ManageClass></ManageClass></AdminRoute>,
       },
       {
         path:"myinsclass",
-        element:<MyInsClass></MyInsClass>
+        element:<InstructorRoute><MyInsClass></MyInsClass></InstructorRoute>
       },
       {
         path:"paymenthistory",

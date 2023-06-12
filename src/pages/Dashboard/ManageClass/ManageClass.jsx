@@ -141,8 +141,9 @@ const ManageClass = () => {
       </div>
       <dialog id="my_modal_1" className="modal">
         <form method="dialog" className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
+          <h3 className="font-bold text-lg my-2">Hello! Give your Feedback</h3>
           <input
+          className="input input-bordered input-lg w-full max-w-2xls"
             onChange={(e) => {
               setValue(e.target.value);
             }}
@@ -155,7 +156,7 @@ const ManageClass = () => {
               onClick={() =>
                 handleFeedback(singleClass._id, { feedback: value })
               }
-              className="btn"
+              className="btn btn-sm btn-secondary"
             >
               Add
             </button>
