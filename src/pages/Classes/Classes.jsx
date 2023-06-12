@@ -20,7 +20,7 @@ const Classes = () => {
   }, []);
 
   return (
-    <div>
+    <div className="pt-20">
       <Helmet>
         <title>SportsDremars || Classes</title>
       </Helmet>

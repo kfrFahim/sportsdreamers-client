@@ -17,7 +17,7 @@ const Instructor = () => {
       });
   }, []);
   return (
-    <Container>
+    <div className="pt-20">
       <Helmet>
         <title>SportsDremars || Instructor</title>
       </Helmet>
@@ -32,7 +32,7 @@ const Instructor = () => {
           <InstructorCard item={item}></InstructorCard>
         ))}
       </div>
-    </Container>
+    </div>
   );
 };
 
